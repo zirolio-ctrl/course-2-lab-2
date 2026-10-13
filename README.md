@@ -1,13 +1,21 @@
 # Lab 2
 
-### Build
+## Build
 ```sh
 cmake -B build
 cmake --build build
 ```
 
-### Run
-## Generate
+## Run
+#### Help
 ```sh
-./build/main --generate 
+./build/main --help
+```
+#### Generate
+```sh
+./build/main --generate [seed]
+```
+#### Benchmark
+```sh
+./build/main --benchmark
 ```
