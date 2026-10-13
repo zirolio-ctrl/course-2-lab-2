@@ -22,3 +22,5 @@ Makefile
 
 data/
 results/
+build_op0/
+build_op3/

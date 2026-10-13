@@ -22,10 +22,10 @@ const std::filesystem::path data_directory = "data";
 const std::filesystem::path results_directory = "results";
 
 const std::vector<std::size_t> data_sizes{
-    10,
     100'000,
     500'000,
-    1'000'000
+    1'000'000,
+    10'000'000,
 };
 
 namespace lab {
@@ -112,19 +112,19 @@ int main(const int argc, char* argv[]) {
     if (mode == "--generate") {
         if (argc > 2) {
             const std::string_view value = argv[2];
-
+            
             const auto [ptr, ec] = std::from_chars(
                 value.data(),
                 value.data() + value.size(),
                 seed
             );
-
+            
             if (ec != std::errc{} || ptr != value.data() + value.size()) {
                 std::cerr << "Error: invalid seed: " << value << '\n';
                 return 1;
             }
         }
-
+        
         lab::generate_data_files(data_directory, data_sizes, seed);
         return 0;
     }
@@ -138,5 +138,6 @@ int main(const int argc, char* argv[]) {
         "Usage: {} [--generate [seed]|--benchmark|--help]\n",
         argv[0]
     );
+
     return mode == "--help" ? 0 : 1;
 }
